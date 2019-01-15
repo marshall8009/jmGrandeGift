@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+	<link href="~/CSS/Title.css" rel="stylesheet" />
+	<link href="~/CSS/Footer.css" rel="stylesheet" />
+	<title>@ViewBag.Title</title>
+	<style>
+		.input-validation-error{ border-color: red; background-color: #fee;}
+	</style>
+</head>
+<body class="container-fluid">
+	<div class="bg-info p-3">
+		<h2>@ViewBag.Title</h2>
+	</div>
+	@if (TempData["message"] != null)
+	{
+		<div class="alert alert-success">@TempData["message"]</div>
+	}
+	<div class="admin border border-primary row justify-content-center">
+		<a asp-action="AdminDisplay" asp-controller="Product" class="btn btn-primary">Products</a>
+	</div>
+	<div class="admin border border-primary row justify-content-center">
+		<a asp-action="Display" asp-controller="Category" class="btn btn-primary">Categories</a>
+	</div>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>

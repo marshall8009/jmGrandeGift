@@ -1,0 +1,55 @@
+﻿@model ProductAdminViewModel
+
+@{ 
+	ViewBag.Title = "All Products";
+	Layout = "_Layout";
+}
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-3"></div>
+		<div class="col-md-6">
+			<div class="row justify-content-center my-3">
+				<a asp-action="Index" asp-controller="Admin" class="mr-5">Back</a>
+				<a asp-action="Create" class="btn btn-success">Add Product</a>
+			</div>
+			<table class="table table-striped table-bordered table-sm">
+				<tr>
+					<th class="text-left">ID</th>
+					<th class="text-left">Name</th>
+					<th class="text-left">Price</th>
+					<th class="text-left">Category</th>
+					<th class="text-left">Discontinue Product?</th>
+					<th class="text-center">Actions</th>
+				</tr>
+				@foreach (var item in Model.Products)
+				{
+				<tr>
+					<td class="text-left">@item.ProductId</td>
+					<td>@item.ProductName</td>
+					<td>@item.Price</td>
+					<td>@item.CategoryId</td>
+					
+                        @if (item.Discontinue == true)
+                        {
+                            <td>Discontinued</td>
+                        }
+                        else
+                        {
+                            <td>Active</td>
+                        }
+
+					<td class="text-center">
+
+						<a asp-action="Update" class="btn btn-sm btn-warning"
+						   asp-route-id="@item.ProductId">
+							Edit
+						</a>						
+					</td>
+				</tr>
+				}
+			</table>
+		</div>
+		<div class="col-md-3"></div>
+	</div>
+</div>

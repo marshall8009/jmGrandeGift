@@ -1,0 +1,118 @@
+﻿@using System.Security
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>@ViewBag.Title</title>
+	<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+	<link href="~/CSS/Title.css" rel="stylesheet" />
+	<link href="~/CSS/Footer.css" rel="stylesheet" />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+</head>
+<body class="container-fluid">
+	<header class="header">
+
+		<div class="row  div-header">
+			<div class="col-md-2"></div>
+			<div class="col-md-8 text-center" >
+				<a class="imageAnchor" asp-action="Index" asp-controller="Home">
+					<img src="~/images/logo.png">
+				</a>
+			</div>
+			<div class="col-md-2"></div>		
+		</div>
+		<nav class="row navbar navbar-expand-lg navbar-dark bg-dark">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a asp-action="Index" asp-controller="Home" class="action-link">Home</a>
+					</li>
+					<li class="nav-item">
+						<a asp-action="About" asp-controller="Home" class="action-link">About</a>
+					</li>
+					<li class="nav-item">
+						<a asp-action="Display" asp-controller="Product" class="action-link">Shop</a>
+					</li>
+					<li class="nav-item">
+						<a asp-action="Index" asp-controller="Cart" class="action-link">Cart</a>
+					</li>
+					<li class="nav-item">
+						<a asp-action="Checkout" asp-controller="Order" class="action-link">Checkout</a>
+					</li>
+				</ul>
+				@*<form class="form-inline mr-auto my-2 my-lg-0">
+					<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+					<button class="font-weight-bold search-btn btn my-2 my-sm-0" type="submit">Search</button>
+				</form>*@
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <p>Welcome @User.Identity.Name </p>
+                }
+
+				<ul class="navbar-nav">
+					@if (User.Identity.IsAuthenticated )
+					{
+						@if (User.IsInRole("Admin"))
+						{
+							<li class="nav-item">
+								<a asp-action="Index" asp-controller="Admin" class="action-link">Admin</a>
+							</li>
+
+						}
+						else
+						{
+							<li class="nav-item">
+								<a asp-action="Profile" asp-controller="Customer" class="action-link">My Account</a>
+							</li>
+						}
+						<li class="nav-item">
+							<a asp-action="Logout" asp-controller="Account" class="action-link">Logout</a>
+						</li>
+					}
+					else
+					{
+						<li class="nav-item">
+							<a asp-action="Login" asp-controller="Account" class="action-link">Login/Register</a>
+						</li>
+					}
+				</ul>				
+			</div>
+		</nav>
+	</header>
+
+	<div class="renderBody">
+		@RenderBody()
+	</div>
+
+	<div class="footer row text-left">
+		<div class="col-md-4 footer-div">
+			<p><span>&copy;</span>2018</p>
+		</div>
+		<div class="col-md-4 footer-div">
+			<h4>My Account</h4>
+			<ul class="footer-list">
+				<li><a asp-action="Profile" asp-controller="Customer" class="">My Account</a></li>
+				<li><a asp-action="Index" asp-controller="Cart" class="action-link">My Cart</a></li>
+			</ul>
+		</div>
+		<div class="col-md-4 footer-div">
+			<h4>Help Center</h4>
+			<ul class="footer-list">
+				<li><a asp-action="Contact" asp-controller="Home">Contact Us</a></li>
+				<li><a asp-action="Privacy" asp-controller="Home">Privacy Policy</a></li>
+				<li><a asp-action="TermsOfUse" asp-controller="Home">Terms of Use</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<script src="~/lib/jquery/dist/jquery.js"></script>
+	<script src="~/lib/popper.js/dist/umd/popper.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+</body>
+</html>

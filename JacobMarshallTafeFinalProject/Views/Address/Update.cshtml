@@ -1,0 +1,48 @@
+﻿@model AddressUpdateViewModel
+
+@{
+	ViewData["Title"] = "Update Address";
+}
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-3">
+		</div>
+		<div class="col-md-6">
+			<form asp-action="Update" asp-controller="Address" method="post">
+				<div asp-validation-summary="ModelOnly"></div>
+				<div class="mt-3">
+					<input asp-for="StreetNumber" class="form-control" placeholder="Street Number" />
+					<span asp-validation-for="StreetNumber" class="text-danger"></span>
+				</div>
+				<div class="mt-3">
+					<input asp-for="StreetName" class="form-control" placeholder="Street Name" />
+					<span asp-validation-for="StreetName" class="text-danger"></span>
+				</div>
+				<div class="mt-3">
+					<input asp-for="City" class="form-control" placeholder="City" />
+					<span asp-validation-for="City" class="text-danger"></span>
+				</div>
+				<div class="mt-3">
+					<input asp-for="State" class="form-control" placeholder="State" />
+					<span asp-validation-for="State" class="text-danger"></span>
+				</div>
+				<div class="mt-3">
+					<input asp-for="Postcode" class="form-control" placeholder="Postcode" />
+					<span asp-validation-for="Postcode" class="text-danger"></span>
+				</div>
+				<div class="mt-3">
+					<input asp-for="Country" class="form-control" placeholder="Country" />
+					<span asp-validation-for="Country" class="text-danger"></span>
+				</div>
+				<div class="my-3">
+					<input type="submit" value="Update Address" class="btn btn-success" />
+					<a asp-action="Display" asp-controller="Address" class="btn btn-secondary">Cancel</a>
+				</div>
+			</form>
+		</div>
+		<div class="col-md-3">
+		</div>
+	</div>
+</div>
+

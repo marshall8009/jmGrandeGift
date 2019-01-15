@@ -1,0 +1,13 @@
+﻿@model ProductDetailsViewModel
+
+<div class="card mt-4">
+	<img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">
+	<div class="card-body">
+		<h3 class="card-title">@Model.ProductName</h3>
+		<h4>@Model.Price.ToString("c")</h4>
+		<p class="card-text">@Model.ProductDetails</p>
+		<p class="card-text">Category: @Model.CategoryName</p>
+		<span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+		4.0 stars
+	</div>
+</div>

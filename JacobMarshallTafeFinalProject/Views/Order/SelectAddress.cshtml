@@ -1,0 +1,18 @@
+﻿@model OrderCheckoutViewModel
+
+	<div class="col-md-3"></div>
+	<div class="col-md-6">
+		<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+		<form asp-action="Checkout" asp-controller="Order" method="post">
+			<div class="mt-3">
+				<p>Select from your saved addresses.</p>
+				<select asp-for="AddressId" asp-items="@Model.Addresses" style="min-width:200px;"></select>
+				<input type="submit" class="btn btn-warning font-weight-bold" value="Complete Order" />
+			</div>
+			<div class="my-3">
+				<h4>Or click here to enter a new address</h4>
+				<a asp-action="Checkout" asp-controller="Order" class="btn btn-outline-success">Enter Address</a>
+			</div>
+		</form>
+	</div>
+	<div class="col-md-3"></div>

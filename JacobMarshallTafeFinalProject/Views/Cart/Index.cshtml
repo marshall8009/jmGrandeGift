@@ -1,0 +1,60 @@
+﻿@model CartIndexViewModel
+
+@{
+	ViewData["Title"] = "Cart";
+}
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-3"></div>
+		<div class="col-md-6">
+			<div>
+				<h2>Your Cart</h2>
+			</div>
+			<div>
+				<table class="table table-bordered table-striped">
+					<thead>
+						<tr>
+							<th>Item</th>
+							<th>Quantity</th>
+							<th>Price</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var item in Model.Cart.Lines)
+						{
+							<tr>
+								<td>@item.Product.ProductName</td>
+								<td>@item.Quantity</td>
+								<td>@((item.Quantity * item.Product.Price).ToString("c"))</td>
+								<td>
+									<form asp-action="RemoveFromCart" method="post">
+										<input type="hidden" name="ProductId"
+											   value="@item.Product.ProductId" />
+										<input type="hidden" name="returnUrl"
+											   value="@Model.ReturnUrl" />
+										<button type="submit" class="btn btn-danger btn-sm font-weight-bold">
+											Remove
+										</button>
+									</form>
+								</td>
+							</tr>
+						}
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="2" class="text-right">Total:</td>
+							<td>@Model.Cart.TotalValue().ToString("c")</td>
+						</tr>
+					</tfoot>
+				</table>
+				<div class="m-2 text-center">
+					<a class="btn btn-info font-weight-bold text-white" href="@Model.ReturnUrl">Continue Shopping</a>
+					<a class="btn btn-warning font-weight-bold" asp-action="Checkout" asp-controller="Order">Checkout</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3"></div>
+	</div>
+</div>
